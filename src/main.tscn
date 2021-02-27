@@ -1,16 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/cards.gd" type="Script" id=1]
+[ext_resource path="res://src/ui/main_menu/main_menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main.gd" type="Script" id=2]
+[ext_resource path="res://src/game/game.tscn" type="PackedScene" id=3]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="main_menu" parent="." instance=ExtResource( 1 )]
+
+[node name="game" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="leave" type="Button" parent="."]
+visible = false
+margin_right = 12.0
+margin_bottom = 20.0
+text = "LEAVE"
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
-
-[node name="own_cards" type="Node2D" parent="."]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="enemy" type="Node2D" parent="."]
+[connection signal="pressed" from="leave" to="." method="reset"]

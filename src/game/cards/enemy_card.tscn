@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/game/cards/card.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 100, 161.8, 0 )
+
+[sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 50, 80.9 )
+
+[node name="enemy_card" type="StaticBody2D"]
+position = Vector2( 557.326, 455.649 )
+input_pickable = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+mesh = SubResource( 1 )
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="col" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
