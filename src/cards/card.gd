@@ -1,30 +1,16 @@
 extends StaticBody2D
 
 export (int) var Number = 0
-
-signal select(whom)
+var Start_pos = Vector2()
 
 var Selected = false
 var Expanding = true
 
 #U: Animates the card while selected
 func animate():
-	var curr = get_scale()
-	var new = Vector2()
-	
-	if (Expanding or curr.x == 1) and curr.x < 1.3:
-		#A: The card has to expand
-		Expanding = true
-		new.x = curr.x + 0.005
-	elif (not Expanding) or curr.x >= 1.3:
-		Expanding = false
-		new.x = curr.x - 0.005
-	
-	new.y = new.x
-	
-	set_scale(new)
-	#TODO: Instead of expanding the card itself,
-	#      maybe move a glow around it
+	var mouse_pos = get_viewport().get_mouse_position()
+	set_global_position(mouse_pos)
+	#A: Following the mouse
 
 #U: Starts animating the card
 func select():
@@ -36,16 +22,18 @@ func deselect():
 	Selected = false
 	Expanding = true
 	
-	set_scale(Vector2(1, 1))
+	set_position(Start_pos)
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.get_button_index() == BUTTON_LEFT and event.is_pressed():
-			#A: You just clicked on this card
-			if Selected:
-				deselect()
+		if event.get_button_index() == BUTTON_LEFT:
+			if event.is_pressed():
+				#A: You just clicked on this card
+				select()
 			else:
-				emit_signal('select', self)
+				#A: You just released this card
+				deselect()
+	#TODO: Differentiate if just clicking or holding the mouse
 
 func _physics_process(_delta):
 	if Selected:
