@@ -4,7 +4,8 @@ extends Node
 #U: Info of each player based on their id
 var Players = {}
 
-func set_player(id, info):
+remotesync func set_player(info):
+	var id = get_tree().get_rpc_sender_id()
 	Players[id] = info
 
 func get_player(id):
