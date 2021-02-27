@@ -8,7 +8,7 @@ size = Vector3( 100, 161.8, 0 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50, 80.9 )
 
-[node name="card" type="StaticBody2D"]
+[node name="own_card" type="StaticBody2D"]
 position = Vector2( 557.326, 455.649 )
 input_pickable = true
 script = ExtResource( 1 )
