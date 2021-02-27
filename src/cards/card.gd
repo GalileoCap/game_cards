@@ -1,7 +1,8 @@
 extends StaticBody2D
 
-var Selected = false
+export (int) var Number = 0
 
+var Selected = false
 var Expanding = true
 
 #U: Animates the card while selected
@@ -49,3 +50,6 @@ func _input_event(viewport, event, shape_idx):
 func _physics_process(_delta):
 	if Selected:
 		animate()
+
+func _ready():
+	$number/label.text = str(Number)
