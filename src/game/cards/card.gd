@@ -1,9 +1,9 @@
 extends StaticBody2D
 
+export (int) var Number = 0
 var Start_pos = Vector2()
 
 var Selected = false
-var Expanding = true
 
 #U: Animates the card while selected
 func animate():
@@ -14,12 +14,10 @@ func animate():
 #U: Starts animating the card
 func select():
 	Selected = true
-	Expanding = true
 
 #U: Stops animating the card
 func deselect():
 	Selected = false
-	Expanding = true
 	
 	set_position(Start_pos)
 
