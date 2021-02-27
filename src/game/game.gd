@@ -2,18 +2,17 @@ extends Node2D
 
 #U: Loads the game for this player
 func load_game():
-	$own_cards.shuffle_deck()
-	#TODO: Start waiting for player
-
-#U: Resets the game board
-func reset():
 	for card in ($own_cards.get_children() + $enemy.get_children()):
 		card.queue_free()
+	
+	$ui/waiting.show()
+	$ui/enemy_left.hide()
 
 #U: Starts the game when another player joins
 func player_entered(_id):
+	$own_cards.shuffle_deck()
 	$enemy.shuffle_deck()
-	#TODO: Stop waiting for enemy
+	$ui/waiting.hide()
 	#TODO: Throw coin to decide who's first
 
 func _ready():

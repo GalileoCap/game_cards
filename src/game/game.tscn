@@ -1,14 +1,75 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/game/cards/cards.gd" type="Script" id=1]
 [ext_resource path="res://src/game/game.gd" type="Script" id=2]
 [ext_resource path="res://src/game/enemy.gd" type="Script" id=3]
+[ext_resource path="res://src/ui/game_ui.gd" type="Script" id=4]
 
 [node name="game" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="ui" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_lock_": true,
+"_edit_use_anchors_": false
 }
+
+[node name="waiting" type="Panel" parent="ui"]
+margin_left = 444.752
+margin_top = 224.266
+margin_right = 609.752
+margin_bottom = 368.266
+
+[node name="label" type="Label" parent="ui/waiting"]
+margin_left = 26.4285
+margin_top = 35.8672
+margin_right = 143.428
+margin_bottom = 66.8672
+text = "Waiting for enemy
+        to join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leave" type="Button" parent="ui/waiting"]
+margin_left = 57.1044
+margin_top = 97.2191
+margin_right = 107.104
+margin_bottom = 117.219
+text = "LEAVE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="enemy_left" type="Panel" parent="ui"]
+visible = false
+margin_left = 440.51
+margin_top = 187.978
+margin_right = 629.51
+margin_bottom = 389.978
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="ui/enemy_left"]
+margin_left = 21.719
+margin_top = 54.0326
+margin_right = 168.719
+margin_bottom = 68.0326
+text = "ENEMY DISCONNECTED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leave" type="Button" parent="ui/enemy_left"]
+margin_left = 69.9246
+margin_top = 121.838
+margin_right = 119.925
+margin_bottom = 141.838
+text = "LEAVE"
 
 [node name="own_cards" type="Node2D" parent="."]
 script = ExtResource( 1 )

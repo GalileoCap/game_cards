@@ -17,6 +17,8 @@ func join():
 		var host = NetworkedMultiplayerENet.new()
 		host.create_client(ip, PORT)
 		get_tree().set_network_peer(host)
+		
+		get_node('../').load_game()
 	else:
 		print('INVALID IP ADRESS %s' % ip)
 		#TODO: Warn
