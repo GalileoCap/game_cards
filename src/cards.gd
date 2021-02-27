@@ -5,8 +5,6 @@ export (int) var cards = 3
 var RNG = RandomNumberGenerator.new()
 
 func shuffle_deck():
-	#TODO: For Truco, share deck between both players
-	#TODO: Keep track of which cards have already been dealt
 	for i in range(cards):
 		var card = preload('res://src/cards/own_card.tscn').instance()
 		card.set_name('card_' + str(i)) #TODO: Better ID's
