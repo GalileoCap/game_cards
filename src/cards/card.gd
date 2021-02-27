@@ -2,6 +2,8 @@ extends StaticBody2D
 
 export (int) var Number = 0
 
+signal select(whom)
+
 var Selected = false
 var Expanding = true
 
@@ -27,16 +29,14 @@ func animate():
 #U: Starts animating the card
 func select():
 	Selected = true
-	
 	Expanding = true
-	#TODO: Deselect other cards
 
 #U: Stops animating the card
 func deselect():
 	Selected = false
+	Expanding = true
 	
 	set_scale(Vector2(1, 1))
-	Expanding = true
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -45,7 +45,7 @@ func _input_event(viewport, event, shape_idx):
 			if Selected:
 				deselect()
 			else:
-				select()
+				emit_signal('select', self)
 
 func _physics_process(_delta):
 	if Selected:

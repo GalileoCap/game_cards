@@ -2,8 +2,6 @@
 
 [ext_resource path="res://src/cards/card.gd" type="Script" id=1]
 
-
-
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 100, 161.8, 0 )
 
