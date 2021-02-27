@@ -13,6 +13,7 @@ func reset():
 	
 	$main_menu.show()
 	$game.hide()
+	$game.reset()
 	$leave.hide()
 
 #U: Prompts you to leave when the enemy disconnects

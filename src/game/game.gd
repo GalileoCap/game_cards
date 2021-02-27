@@ -7,13 +7,13 @@ func load_game():
 
 #U: Resets the game board
 func reset():
-	pass #TODO
+	for card in ($own_cards.get_children() + $enemy.get_children()):
+		card.queue_free()
 
 #U: Starts the game when another player joins
-func player_entered(id):
-	print(id)
+func player_entered(_id):
+	$enemy.shuffle_deck()
 	#TODO: Stop waiting for enemy
-	#TODO: Load their card backs
 	#TODO: Throw coin to decide who's first
 
 func _ready():

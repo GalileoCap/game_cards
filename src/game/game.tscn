@@ -18,3 +18,6 @@ __meta__ = {
 
 [node name="enemy" type="Node2D" parent="."]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
