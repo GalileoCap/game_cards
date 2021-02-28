@@ -1,12 +1,16 @@
 extends Node2D
 
-var RNG = RandomNumberGenerator.new()
+#U: Standard 40 card deck for Truco.
+#'A'ce, 'J'ack, 'Q'ueen, 'K'ing
+#'C'lubs = Basto
+#'S'pades = Espada
+#'H'earts = Copa
+#'D'iamonds = Oro
 var Deck = ['AC', '2C', '3C', '4C', '5C', '6C', '7C', '10C', 'KC', 'JC', 'QC', 'AS', '2S', '3S', '4S', '5S', '6S', '7S', '10S', 'KS', 'JS', 'QS', 'AD', '2D', '3D', '4D', '5D', '6D', '7D', '10D', 'KD', 'JD', 'QD', 'AH', '2H', '3H', '4H', '5H', '6H', '7H', '10H', 'KH', 'JH', 'QH']
 
 func shuffle_deck():
 	if get_tree().is_network_server():
 		Deck.shuffle()
-		print(Deck)
 		rpc('shuffle_cards', [Deck[0], Deck[1], Deck[2]])
 		shuffle_cards([Deck[3], Deck[4], Deck[5]])
 
