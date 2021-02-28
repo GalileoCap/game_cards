@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/game/cards/enemy_card.gd" type="Script" id=1]
+[ext_resource path="res://resources/cards/back_red.png" type="Texture" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 100, 161.8, 0 )
@@ -19,6 +20,7 @@ __meta__ = {
 }
 
 [node name="mesh" type="MeshInstance2D" parent="."]
+visible = false
 mesh = SubResource( 1 )
 texture = SubResource( 2 )
 __meta__ = {
@@ -31,3 +33,7 @@ shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.145, 0.154 )
+texture = ExtResource( 2 )

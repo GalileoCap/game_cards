@@ -10,6 +10,7 @@ func load_game():
 
 #U: Starts the game when another player joins
 func player_entered(_id):
+	SHARED.shuffle_deck()
 	$own_cards.shuffle_deck()
 	$enemy.shuffle_deck()
 	$ui/waiting.hide()

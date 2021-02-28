@@ -1,7 +1,7 @@
 extends StaticBody2D
 
-export (int) var Number = 0
 var Start_pos = Vector2()
+var Number = null
 
 var Selected = false
 
@@ -37,4 +37,5 @@ func _physics_process(_delta):
 		animate()
 
 func _ready():
-	$number/label.text = str(Number)
+	var texture = load('res://resources/cards/' + Number + '.png')
+	var _tmp = $sprite.set_texture(texture)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/game/cards/card.gd" type="Script" id=1]
+[ext_resource path="res://resources/cards/QH.png" type="Texture" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 100, 161.8, 0 )
@@ -17,6 +18,7 @@ __meta__ = {
 }
 
 [node name="mesh" type="MeshInstance2D" parent="."]
+visible = false
 mesh = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -29,21 +31,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="number" type="Panel" parent="."]
-margin_left = -21.0
-margin_top = -48.0
-margin_right = -5.0
-margin_bottom = -36.0
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.145, 0.154 )
+texture = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="label" type="Label" parent="number"]
-margin_right = 16.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
