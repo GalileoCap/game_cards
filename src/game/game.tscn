@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/game/cards/cards.gd" type="Script" id=1]
 [ext_resource path="res://src/game/game.gd" type="Script" id=2]
 [ext_resource path="res://src/game/enemy.gd" type="Script" id=3]
 [ext_resource path="res://src/ui/game_ui.gd" type="Script" id=4]
 [ext_resource path="res://src/game/field.gd" type="Script" id=5]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1024, 200, 2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 512, 100 )
 
 [node name="game" type="Node2D"]
 script = ExtResource( 2 )
@@ -84,8 +90,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="field" type="Node2D" parent="."]
+[node name="field" type="StaticBody2D" parent="."]
+input_pickable = true
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="mesh" type="MeshInstance2D" parent="field"]
+position = Vector2( 512, 300 )
+mesh = SubResource( 1 )
+
+[node name="col" type="CollisionShape2D" parent="field"]
+position = Vector2( 512, 300 )
+shape = SubResource( 2 )
+
+[node name="field_cards" type="Node2D" parent="field"]

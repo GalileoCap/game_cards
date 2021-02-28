@@ -10,11 +10,11 @@ size = Vector3( 100, 161.8, 0 )
 extents = Vector2( 50, 80.9 )
 
 [node name="own_card" type="StaticBody2D"]
-position = Vector2( 557.326, 455.649 )
 input_pickable = true
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="mesh" type="MeshInstance2D" parent="."]

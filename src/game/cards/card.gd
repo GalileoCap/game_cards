@@ -3,6 +3,7 @@ extends StaticBody2D
 var Start_pos = Vector2()
 var Number = null
 
+var Disabled = false
 var Selected = false
 
 #U: Animates the card while selected
@@ -22,7 +23,7 @@ func deselect():
 	set_position(Start_pos)
 
 func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and not Disabled:
 		if event.get_button_index() == BUTTON_LEFT:
 			if event.is_pressed():
 				#A: You just clicked on this card

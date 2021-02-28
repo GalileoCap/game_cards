@@ -5,8 +5,17 @@ const Order = ['']
 var Turn = 0
 var Cards = []
 
-func spawn(card):
-	Cards.append(card)
+func spawn(number):
+	Cards.append(number)
+	
+	var card = preload('res://src/game/cards/own_card.tscn').instance()
+	card.set_name('card_' + number) #TODO: Better ID's
+	card.Number = number
+	var Start_pos = Vector2(1024/2, 300)
+	card.Start_pos = Start_pos
+	card.Disabled = true
+	card.set_position(Start_pos)
+	$field_cards.add_child(card)
 
 func number(card):
 	var n = card[0]
@@ -62,11 +71,25 @@ func compare(c1, c2):
 		pass
 
 func play_card(card):
+	var number = card.Number
+	card.queue_free()
+	#TODO: Remove card in the enemy's screen
+	#TODO: Rearrange hands
+	
 	if Turn % 2 == 0:
-		spawn(card)
+		spawn(number)
 	else:
 		var prev = Cards[-1]
-		spawn(card)
-		compare(prev, card)
+		spawn(number)
+		compare(prev, number)
 	
 	Turn += 1
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.get_button_index() == BUTTON_LEFT:
+			if not event.is_pressed():
+				#A: You just released this card
+				for card in get_node('../own_cards').get_children():
+					if card.Selected:
+						play_card(card)
