@@ -1,16 +1,22 @@
 extends Node2D
 
 var RNG = RandomNumberGenerator.new()
+var Deck = ['AC', '2C', '3C', '4C', '5C', '6C', '7C', '10C', 'KC', 'JC', 'QC', 'AS', '2S', '3S', '4S', '5S', '6S', '7S', '10S', 'KS', 'JS', 'QS', 'AD', '2D', '3D', '4D', '5D', '6D', '7D', '10D', 'KD', 'JD', 'QD', 'AH', '2H', '3H', '4H', '5H', '6H', '7H', '10H', 'KH', 'JH', 'QH']
 
 func shuffle_deck():
-	var cards = 3
-	#TODO: Keep track of which cards have already been dealt
-	for i in range(cards):
+	if get_tree().is_network_server():
+		Deck.shuffle()
+		print(Deck)
+		rpc('shuffle_cards', [Deck[0], Deck[1], Deck[2]])
+		shuffle_cards([Deck[3], Deck[4], Deck[5]])
+
+remote func shuffle_cards(cards):
+	for i in len(cards):
 		var card = preload('res://src/game/cards/own_card.tscn').instance()
-		card.set_name('card_' + str(i)) #TODO: Better ID's
-		card.Number = SHARED.Deck[i] #TODO: i + player_turn
+		card.set_name('card_' + cards[i]) #TODO: Better ID's
+		card.Number = cards[i]
 		var Start_pos = Vector2(0, 500) #TODO: Better positioning
-		Start_pos.x = 1024 / (cards + 1) * (1 + i)
+		Start_pos.x = 1024 / (float(len(cards)) + 1) * (1 + i)
 		card.Start_pos = Start_pos
 		card.set_position(Start_pos)
 		add_child(card)
