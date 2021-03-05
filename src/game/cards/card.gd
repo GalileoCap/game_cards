@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 var Start_pos = Vector2()
 var Number = null
@@ -17,8 +17,16 @@ func select():
 	Selected = true
 
 #U: Stops animating the card
-func deselect():
+func release():
 	Selected = false
+	
+	for field in get_overlapping_areas():
+		if field.name == 'field':
+			var id = get_tree().get_network_unique_id()
+			if id == field.Players[field.Turn % 2]:
+				#A: It's my turn
+				field.rpc('play_card', Number)
+				queue_free()
 	
 	set_position(Start_pos)
 
@@ -30,7 +38,7 @@ func _input_event(_viewport, event, _shape_idx):
 				select()
 			else:
 				#A: You just released this card
-				deselect()
+				release()
 	#TODO: Differentiate if just clicking or holding the mouse
 
 func _physics_process(_delta):

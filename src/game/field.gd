@@ -1,9 +1,10 @@
-extends Node2D
+extends Area2D
 
 const Order = ['']
 
 var Turn = 0
 var Cards = []
+puppet var Players #U: Whose turn is it
 
 func spawn(number):
 	Cards.append(number)
@@ -63,33 +64,22 @@ func compare(c1, c2):
 	var s2 = score(c2)
 	
 	if s1 > s2:
-		pass
+		return 0
 	elif s1 < s2:
-		pass
+		return 1
 	else: 
-		#A: Tie
-		pass
+		return 0
 
-func play_card(card):
-	var number = card.Number
-	card.queue_free()
+remotesync func play_card(number):
 	#TODO: Remove card in the enemy's screen
 	#TODO: Rearrange hands
-	
 	if Turn % 2 == 0:
 		spawn(number)
 	else:
 		var prev = Cards[-1]
 		spawn(number)
-		compare(prev, number)
+		var by = compare(prev, number)
+		Players = [Players[by], Players[(by + 1) % 2]]
+		#A: Shifted the array by "by"
 	
 	Turn += 1
-
-func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.get_button_index() == BUTTON_LEFT:
-			if not event.is_pressed():
-				#A: You just released this card
-				for card in get_node('../own_cards').get_children():
-					if card.Selected:
-						play_card(card)
