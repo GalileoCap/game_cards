@@ -22,8 +22,7 @@ func release():
 	
 	for field in get_overlapping_areas():
 		if field.name == 'field':
-			var id = get_tree().get_network_unique_id()
-			if id == field.Players[field.Turn % 2]:
+			if field.is_my_turn():
 				#A: It's my turn
 				field.rpc('play_card', Number)
 				queue_free()

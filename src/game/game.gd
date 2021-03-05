@@ -15,12 +15,7 @@ func player_entered(id):
 	$enemy.shuffle_deck()
 	$ui/waiting.hide()
 	
-	if get_tree().is_network_server():
-		var s_id = get_tree().get_network_unique_id()
-		$field.Players = [id, s_id]
-		$field.Players.shuffle()
-		$field.rset_id(id, 'Players', $field.Players)
-		#TODO: Announce player order
+	$field.first_turn_order(id)
 
 func _ready():
 	var _tmp = get_tree().connect('network_peer_connected', self, 'player_entered')

@@ -10,3 +10,6 @@ func shuffle_deck():
 		Start_pos.x = 1024 / (cards + 1) * (1 + i)
 		card.set_position(Start_pos)
 		add_child(card)
+
+func remove_card():
+	get_children()[0].queue_free()

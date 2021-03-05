@@ -6,6 +6,20 @@ var Turn = 0
 var Cards = []
 puppet var Players #U: Whose turn is it
 
+#U: Throws coin for the first turn's order
+func first_turn_order(id):
+	if get_tree().is_network_server():
+		var s_id = get_tree().get_network_unique_id()
+		Players = [id, s_id]
+		Players.shuffle()
+		rset_id(id, 'Players', Players)
+		#TODO: Announce player order
+
+#U: Tells you whether it's your turn or not
+func is_my_turn():
+	var id = get_tree().get_network_unique_id()
+	return id == Players[Turn % 2]
+
 func spawn(number):
 	Cards.append(number)
 	
@@ -71,7 +85,12 @@ func compare(c1, c2):
 		return 0
 
 remotesync func play_card(number):
-	#TODO: Remove card in the enemy's screen
+	var sender_id = get_tree().get_rpc_sender_id()
+	var id = get_tree().get_network_unique_id()
+	if sender_id != id:
+		#A: The other player played a card
+		get_node('../enemy').remove_card()
+	
 	#TODO: Rearrange hands
 	if Turn % 2 == 0:
 		spawn(number)
