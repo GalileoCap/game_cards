@@ -37,6 +37,8 @@ func number(card):
 	match n:
 		'A':
 			return 1
+		'X':
+			return 10
 		'J':
 			return 11
 		'Q':
@@ -103,5 +105,6 @@ remotesync func play_card(number):
 	
 	Turn += 1
 	
-	if Turn == 6:
+	if Turn % 6 == 0:
+		#A: Round over
 		get_node('../').start_game()

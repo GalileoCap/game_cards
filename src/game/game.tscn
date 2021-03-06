@@ -101,3 +101,27 @@ margin_top = 121.838
 margin_right = 119.925
 margin_bottom = 141.838
 text = "LEAVE"
+
+[node name="cantar" type="Panel" parent="ui"]
+margin_right = 162.0
+margin_bottom = 165.0
+
+[node name="label" type="Label" parent="ui/cantar"]
+margin_left = 47.877
+margin_top = 11.3393
+margin_right = 102.877
+margin_bottom = 25.3393
+text = "CANTAR:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="truco" type="Button" parent="ui/cantar"]
+margin_left = 53.5466
+margin_top = 64.8859
+margin_right = 100.547
+margin_bottom = 84.8859
+text = "Truco"
+__meta__ = {
+"_edit_use_anchors_": false
+}
