@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/server/console.gd" type="Script" id=1]
+[ext_resource path="res://src/server/command_handler.gd" type="Script" id=2]
+
+[node name="server" type="Node"]
+
+[node name="console" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="command_handler" type="Node" parent="console"]
+script = ExtResource( 2 )
+
+[node name="output" type="TextEdit" parent="console"]
+margin_left = 19.0
+margin_top = 16.0
+margin_right = 1006.0
+margin_bottom = 488.0
+readonly = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="input" type="LineEdit" parent="console"]
+margin_left = 24.0
+margin_top = 502.0
+margin_right = 1003.0
+margin_bottom = 579.0
+[connection signal="text_entered" from="console/input" to="console" method="_on_input_text_entered"]

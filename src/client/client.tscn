@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/client/client.gd" type="Script" id=1]
+
+[node name="client" type="Node"]
+script = ExtResource( 1 )
+
+[node name="test" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="test" to="." method="_on_test_pressed"]

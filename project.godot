@@ -16,14 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="cards"
-run/main_scene="res://src/main.tscn"
+run/main_scene="res://src/shared/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-SHARED="*res://src/networking/shared.gd"
-NET="*res://src/networking/networking.gd"
-CFG="*res://src/cfg.gd"
+STC="*res://src/shared/server_to_client.gd"
 
 [input]
 
