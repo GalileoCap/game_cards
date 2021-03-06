@@ -14,6 +14,11 @@ func new_player(id, info):
 		#A: Enough players to start a match
 		start_match()
 
+#U: Removes a player and stops their match
+func remove_player(id):
+	Players.erase(id)
+	#TODO: Stop match
+
 #U: Starts a new match
 func start_match():
 	var id1 = Waiting.pop_front()
@@ -28,6 +33,9 @@ func start_match():
 	game.set_name('game_%s' % $games.get_children().size())
 	game.Players = [id1, id2]
 	$games.add_child(game)
+	#A: Created game TODO: Is this needed?
 
 func _ready():
 	CTS.Me = self
+	
+	var _trash = get_tree().connect('network_peer_disconnected', self, 'remove_player')
