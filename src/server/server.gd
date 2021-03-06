@@ -25,8 +25,8 @@ func start_match():
 	var id2 = Waiting.pop_front()
 	#A: Removed players from the waiting list
 	
-	STC.send(id1, 'connect_with_enemy', id2)
-	STC.send(id2, 'connect_with_enemy', id1)
+	STC.send(id1, 'connect_to_game', id2)
+	STC.send(id2, 'connect_to_game', id1)
 	#A: "Connected" both players
 	
 	var game = preload('res://src/server/game.tscn').instance()
