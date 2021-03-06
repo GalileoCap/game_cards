@@ -1,10 +1,15 @@
 extends Panel
 
 func output_message(text):
-	$output.text += '\n'+text
+	$output.text += text+'\n'
 
 func send_message(text):
+	var id = get_tree().get_network_unique_id() #TODO: Get name
+	text = '%s: %s' % [id, text]
+	
 	CTC.send('receive_message', text)
+	output_message(text)
+	
 	$input.clear()
 
 func _ready():
