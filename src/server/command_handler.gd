@@ -1,5 +1,6 @@
 extends Node
 
+#U: Checks if this argument is a valid type
 func check_type(string, type):
 	match type:
 		ARG_INT:
@@ -44,8 +45,6 @@ func stop_server():
 	for id in players:
 		var _trash = kick_player(id, 'Server Closed')
 	
-	#TODO: A lot of stuff
-	
 	get_tree().set_network_peer(null)
 	
 	return 'Stopped server'
@@ -58,7 +57,7 @@ func kick_player(id, reason):
 	if id == 1:
 		return 'Can\'t kick self'
 	elif id in players:
-		STC.rpc_id(id, 'kicked', reason)
+		STC.send(id, 'kicked', reason)
 		get_tree().get_network_peer().disconnect_peer(id)
 		return 'Kicked %s' % id
 	else:
@@ -77,3 +76,4 @@ func list_players():
 		return out
 	else:
 		return 'Server not started'
+

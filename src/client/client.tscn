@@ -6,9 +6,32 @@
 script = ExtResource( 1 )
 
 [node name="test" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_left = 36.1586
+margin_top = 29.4314
+margin_right = 77.1586
+margin_bottom = 49.4314
+text = "JOIN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="output" type="TextEdit" parent="."]
+visible = false
+margin_left = 663.0
+margin_top = 24.0
+margin_right = 997.0
+margin_bottom = 267.0
+readonly = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="input" type="LineEdit" parent="."]
+visible = false
+margin_right = 58.0
+margin_bottom = 24.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="test" to="." method="_on_test_pressed"]
+[connection signal="text_entered" from="input" to="." method="_on_input_text_entered"]

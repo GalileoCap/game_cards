@@ -22,6 +22,8 @@ config/icon="res://icon.png"
 [autoload]
 
 STC="*res://src/shared/server_to_client.gd"
+CTS="*res://src/shared/client_to_server.gd"
+CTC="*res://src/client/client_to_client.gd"
 
 [input]
 
