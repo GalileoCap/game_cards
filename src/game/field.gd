@@ -102,3 +102,6 @@ remotesync func play_card(number):
 		#A: Shifted the array by "by"
 	
 	Turn += 1
+	
+	if Turn == 6:
+		get_node('../').start_game()

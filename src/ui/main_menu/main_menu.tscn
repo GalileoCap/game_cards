@@ -12,10 +12,10 @@ __meta__ = {
 }
 
 [node name="ip_input" type="TextEdit" parent="."]
-margin_left = 914.273
-margin_top = 467.442
-margin_right = 1003.27
-margin_bottom = 486.442
+margin_left = 906.063
+margin_top = 465.413
+margin_right = 1015.06
+margin_bottom = 494.413
 text = "127.0.0.1"
 __meta__ = {
 "_edit_use_anchors_": false
