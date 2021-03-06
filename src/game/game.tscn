@@ -103,6 +103,7 @@ margin_bottom = 141.838
 text = "LEAVE"
 
 [node name="cantar" type="Panel" parent="ui"]
+visible = false
 margin_right = 162.0
 margin_bottom = 165.0
 
