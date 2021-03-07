@@ -17,7 +17,11 @@ func new_player(id, info):
 #U: Removes a player and stops their match
 func remove_player(id):
 	Players.erase(id)
-	#TODO: Stop match
+	if id in Waiting:
+		Waiting.erase(id)
+	else:
+		var game = find_game(id)
+		game.end_match()
 
 #U: Starts a new match
 func start_match():
@@ -30,10 +34,17 @@ func start_match():
 	#A: "Connected" both players
 	
 	var game = preload('res://src/server/game.tscn').instance()
-	game.set_name('game_%s' % $games.get_children().size())
+	game.set_name('game_%s_%s_' % [id1, id2])
 	game.Players = [id1, id2]
 	$games.add_child(game)
 	#A: Created game TODO: Is this needed?
+
+#U: Finds the game that this player is in
+func find_game(id):
+	for game in get_node('games').get_children():
+		if ('_%s_' % id) in game.name:
+			#A: The player is playing in this game
+			return game
 
 func _ready():
 	CTS.Me = self

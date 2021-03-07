@@ -23,7 +23,7 @@ func is_my_turn():
 func spawn(number):
 	Cards.append(number)
 	
-	var card = preload('res://src/game/cards/own_card.tscn').instance()
+	var card = preload('res://old_src/game/cards/own_card.tscn').instance()
 	card.set_name('card_' + number) #TODO: Better ID's
 	card.Number = number
 	var Start_pos = Vector2(1024/2, 300)

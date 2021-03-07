@@ -8,9 +8,8 @@ remote func receive_message(text):
 	Me.get_node('ui/chat').output_message(text)
 
 #U: Calls function f with the arguments to my enemy
-func send(f, args):
-	if Enemy != null:
-		#A: We've already made a connection
-		rpc_id(Enemy, f, args)
+func send(f, args = null):
+	if args == null:
+		rpc_id(Enemy, f)
 	else:
-		print('ERR: We shouldn\'t be here CTC %s %s' % [f, args])
+		rpc_id(Enemy, f, args)

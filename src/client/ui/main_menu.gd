@@ -1,5 +1,7 @@
 extends Panel
 
+var Status = false
+
 func join():
 	update_status('CONNECTING TO SERVER')
 	
@@ -22,13 +24,26 @@ func leave():
 	$leave.hide()
 	$join.show()
 
-func update_status(status):
-	$leave/status.text = 'STATUS: %s' % status
+func update_status(new_status):
+	$leave/status.text = 'STATUS: %s' % new_status
+	
+	if new_status == 'CONNECTED TO SERVER':
+		Status = true
+		hide()
+	else:
+		show()
+		Status = false
+
+func _input(_event):
+	if Input.is_action_just_released('menu') and Status:
+		#A: Open/Close
+		visible = not visible
 
 func _ready():
 	var _trash = get_tree().connect('connected_to_server', self, 'update_status', ['CONNECTED TO SERVER'])
 	_trash = get_tree().connect('connection_failed', self, 'update_status', ['CONNECTION FAILED'])
 	_trash = get_tree().connect('server_disconnected', self, 'update_status', ['SERVER DISCONNECTED'])
 	
+	show()
 	$join.show()
 	$leave.hide()

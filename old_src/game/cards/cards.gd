@@ -16,7 +16,7 @@ func shuffle_deck():
 
 remote func shuffle_cards(cards):
 	for i in len(cards):
-		var card = preload('res://src/game/cards/own_card.tscn').instance()
+		var card = preload('res://old_src/game/cards/own_card.tscn').instance()
 		card.set_name('card_' + cards[i]) #TODO: Better ID's
 		card.Number = cards[i]
 		var Start_pos = Vector2(0, 500) #TODO: Better positioning
