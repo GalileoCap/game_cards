@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/client/client.gd" type="Script" id=1]
 [ext_resource path="res://src/client/ui/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://src/client/ui/chat.gd" type="Script" id=3]
 [ext_resource path="res://src/client/game/my_hand.gd" type="Script" id=4]
 [ext_resource path="res://src/client/game/field.gd" type="Script" id=5]
+[ext_resource path="res://src/client/game/enemy_hand.gd" type="Script" id=6]
+[ext_resource path="res://src/client/game/game.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 198 )
@@ -13,6 +15,7 @@ extents = Vector2( 512, 198 )
 script = ExtResource( 1 )
 
 [node name="game" type="Node" parent="."]
+script = ExtResource( 7 )
 
 [node name="field" type="Area2D" parent="game"]
 script = ExtResource( 5 )
@@ -23,6 +26,12 @@ __meta__ = {
 [node name="col" type="CollisionShape2D" parent="game/field"]
 position = Vector2( 512, 198 )
 shape = SubResource( 1 )
+
+[node name="enemy_hand" type="Node2D" parent="game"]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="my_hand" type="Node2D" parent="game"]
 script = ExtResource( 4 )
@@ -162,7 +171,7 @@ margin_left = 106.357
 margin_top = 131.649
 margin_right = 251.357
 margin_bottom = 160.649
-text = "181.22.118.40:3000"
+text = "181.22.112.223:3000"
 __meta__ = {
 "_edit_use_anchors_": false
 }

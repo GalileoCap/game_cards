@@ -1,11 +1,10 @@
 extends Node
 
-var Me
-var Enemy
+var Enemy #U: Enemy's id
 
 #U: Receives a message on the chat
 remote func receive_message(text):
-	Me.get_node('ui/chat').output_message(text)
+	get_node('../client/ui/chat').output_message(text)
 
 #U: Calls function f with the arguments to my enemy
 func send(f, args = null):

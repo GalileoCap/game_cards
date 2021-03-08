@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/client/game/enemy_card.gd" type="Script" id=1]
+[ext_resource path="res://resources/cards/AH.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 50, 80.9 )
+
+[node name="enemy_card" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.145, 0.154 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}

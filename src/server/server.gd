@@ -47,6 +47,4 @@ func find_game(id):
 			return game
 
 func _ready():
-	CTS.Me = self
-	
 	var _trash = get_tree().connect('network_peer_disconnected', self, 'remove_player')

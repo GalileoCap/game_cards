@@ -21,6 +21,7 @@ func shuffle_deck():
 		var cards = [Deck[0 + i * 3], Deck[1 + i * 3], Deck[2 + i * 3]]
 		var id = Players[i]
 		STC.send(id, 'receive_cards', cards)
+		STC.send(other_player(id), 'deal_to_enemy', cards.size())
 
 #U: Returns the other player's id
 func other_player(id):
@@ -102,7 +103,7 @@ func throw_card(data):
 			#A: Shifted the array by "by"
 		
 		STC.send(data.id, 'remove_from_hand', data.name) #A: Whoever threw it removes it from their hand
-		STC.send(other_player(data.id), 'remove_from_enemy') #A: The enemy removes a card from THEIR enemy's hand
+		STC.send(other_player(data.id), 'remove_from_enemy', 1) #A: The enemy removes a card from THEIR enemy's hand
 		
 		Turn += 1
 		

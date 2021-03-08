@@ -21,8 +21,11 @@ func join():
 func leave():
 	get_tree().set_network_peer(null)
 	
+	get_node('../../game').reset()
+	
 	$leave.hide()
 	$join.show()
+	show()
 
 func update_status(new_status):
 	$leave/status.text = 'STATUS: %s' % new_status
