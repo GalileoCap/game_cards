@@ -2,7 +2,7 @@ extends Area2D
 
 var Disabled = false
 
-var Number = 'AH'
+var WhichCard = 'AH'
 
 var Selected = false #U: Has been selected
 var Held = false #U: Is currently being held
@@ -36,7 +36,7 @@ func release():
 			#A: Throwing into the field
 			var data = {
 				'name': name,
-				'number': Number,
+				'WhichCard': WhichCard,
 			}
 			
 			CTS.send('throw_card', data)
@@ -69,4 +69,4 @@ func _physics_process(_delta):
 		follow_mouse()
 
 func _ready():
-	change_artwork(Number)
+	change_artwork(WhichCard)

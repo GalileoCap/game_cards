@@ -4,7 +4,7 @@ var Number = 'AH'
 
 #U: Places the card based on it's position in the hand
 func place(hz, i):
-	position.y = 100
+	position.y = 0
 	position.x = 1024 / (hz + 1) * (1 + i)
 
 #U: Changes the artwork to any image under resources/cards/
