@@ -9,7 +9,7 @@ var Held = false #U: Is currently being held
 
 #U: Places the card based on it's position in the hand
 func place(hz, i):
-	position.y = 500
+	position.y = 600
 	position.x = 1024 / (hz + 1) * (1 + i)
 
 #U: Changes the artwork to any image under resources/cards/
@@ -57,6 +57,12 @@ func _input_event(_viewport, event, _shape_idx):
 		elif button == BUTTON_RIGHT and not Held:
 			#TODO: Highlight this card and show more info
 			pass
+
+func hovering():
+	position.y -= 100
+
+func dehover():
+	position.y += 100
 
 func _physics_process(_delta):
 	if Held:

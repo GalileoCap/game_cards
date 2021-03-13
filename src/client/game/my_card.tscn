@@ -3,9 +3,6 @@
 [ext_resource path="res://src/client/game/my_card.gd" type="Script" id=1]
 [ext_resource path="res://resources/cards/AH.png" type="Texture" id=2]
 
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 80.9 )
 
@@ -27,3 +24,5 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+[connection signal="mouse_entered" from="." to="." method="hovering"]
+[connection signal="mouse_exited" from="." to="." method="dehover"]
