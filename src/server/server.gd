@@ -37,7 +37,7 @@ func start_match():
 	game.set_name('game_%s_%s_' % [id1, id2])
 	game.Players = [id1, id2]
 	$games.add_child(game)
-	#A: Created game TODO: Is this needed?
+	#A: Created game
 
 #U: Finds the game that this player is in
 func find_game(id):

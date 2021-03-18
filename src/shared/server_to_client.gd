@@ -15,25 +15,28 @@ remote func connect_to_game(id):
 	
 	get_node('../client/ui/chat').enter()
 
+#U: Shuffles the player's deck
+remote func shuffle_deck():
+	get_node('../client/game/my_hand').shuffle_deck()
+
 #U: Receives the cards I've been dealt
-remote func receive_cards(cards):
-	for card in cards:
-		get_node('../client/game/my_hand').pick_up(card)
+remote func pick_up(n):
+	get_node('../client/game/my_hand').pick_up(n)
+
+remote func enemy_pick_up(n):
+	get_node('../client/game/enemy_hand').pick_up(n)
 
 #U: Spawns a card on the field
 remote func field_spawn(data):
-	get_node('../client/game/field').spawn_card(data.number)
+	var is_mine = data.id == get_tree().get_network_unique_id()
+	get_node('../client/game/field').spawn_card(data.WhichCard, is_mine)
 
 #U: Removes a card from your hand
-remote func remove_from_hand(card):
-	get_node('../client/game/my_hand').remove_card(card)
-
-#U: Remvoes a card from the enemy's hand
-remote func remove_from_enemy(n):
-	get_node('../client/game/enemy_hand').remove(n)
-
-remote func deal_to_enemy(n):
-	get_node('../client/game/enemy_hand').pick_up(n)
+remote func remove_from_hand(data):
+	if data.id == get_tree().get_network_unique_id():
+		get_node('../client/game/my_hand').remove_card(data.WhichCard)
+	else:
+		get_node('../client/game/enemy_hand').remove(1)
 
 #U: Ends a match
 remote func end_match():

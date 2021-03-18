@@ -27,6 +27,16 @@ __meta__ = {
 position = Vector2( 512, 198 )
 shape = SubResource( 1 )
 
+[node name="mine" type="Node2D" parent="game/field"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="enemy" type="Node2D" parent="game/field"]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="enemy_hand" type="Node2D" parent="game"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -167,11 +177,11 @@ __meta__ = {
 }
 
 [node name="ip" type="LineEdit" parent="ui/main_menu/join"]
-margin_left = 106.357
-margin_top = 131.649
-margin_right = 251.357
-margin_bottom = 160.649
-text = "181.22.112.223:3000"
+margin_left = 105.357
+margin_top = 132.649
+margin_right = 250.357
+margin_bottom = 161.649
+text = "127.0.0.1:3000"
 __meta__ = {
 "_edit_use_anchors_": false
 }

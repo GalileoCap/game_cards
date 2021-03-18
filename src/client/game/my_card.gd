@@ -1,6 +1,6 @@
 extends Area2D
 
-var Disabled = false
+var Where = 'Field'
 
 var WhichCard = 'AH'
 
@@ -8,8 +8,8 @@ var Selected = false #U: Has been selected
 var Held = false #U: Is currently being held
 
 #U: Places the card based on it's position in the hand
-func place(hz, i):
-	position.y = 600
+func place(hz, i, y = 600):
+	position.y = y
 	position.x = 1024 / (hz + 1) * (1 + i)
 
 #U: Changes the artwork to any image under resources/cards/
@@ -45,7 +45,7 @@ func release():
 	place(Hand.size(), Hand.find(self))
 
 func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and not Disabled:
+	if event is InputEventMouseButton and Where == 'Hand':
 		var button = event.get_button_index()
 		if button == BUTTON_LEFT:
 			if event.is_pressed():
@@ -59,10 +59,12 @@ func _input_event(_viewport, event, _shape_idx):
 			pass
 
 func hovering():
-	position.y -= 100
+	if Where == 'Hand' and not Held:
+		position.y = 500
 
 func dehover():
-	position.y += 100
+	if Where == 'Hand' and not Held:
+		position.y = 600
 
 func _physics_process(_delta):
 	if Held:
