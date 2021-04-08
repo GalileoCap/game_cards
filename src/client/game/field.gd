@@ -19,6 +19,5 @@ func spawn_card(WhichCard, is_mine):
 		which_field.get_child(i).place(sz, i, y)
 
 func reset():
-	for child in get_children():
-		if child.name != 'col':
-			child.queue_free()
+	for child in $mine.get_children() + $enemy.get_children():
+		child.queue_free()
